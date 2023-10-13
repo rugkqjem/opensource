@@ -52,3 +52,5 @@ sns.boxplot(data = features, x = 'Age')
 sns.histplot(data = features, x = 'Age', kde = True)
 features
 print(features)
+
+#주석 키키  수정 1 
