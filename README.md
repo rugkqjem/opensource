@@ -8,7 +8,7 @@
 
 - __류승희__
 
-![Alt text](C:\Users\rugkq\OneDrive\바탕 화면\감자.jpg)
+![감자](https://github.com/rugkqjem/opensource/assets/128054647/2ee0e28c-7155-4b3f-a220-641c6f5c8511)
 
 ***
 ## 파일
