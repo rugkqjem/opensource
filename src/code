@@ -1,1 +1,54 @@
 
+import numpy as np
+import pandas as pd
+from sklearn.impute import SimpleImputer, KNNImputer
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import MinMaxScaler, Normalizer, StandardScaler
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data=pd.read_csv('C:\\Users\\rugkq\\Downloads\\titanic.csv')
+
+
+data = data.drop(columns = ['PassengerId', 'Cabin'])
+data = data.dropna(subset = ['Embarked'])
+data = data.reset_index(drop=True)
+
+# 범주형 변수
+cat_features = data.select_dtypes(object)
+# 연속형 변수
+num_features = data.select_dtypes('number')
+
+# 연속형 변수의 결측값 대체
+imputer = KNNImputer(n_neighbors = 5)
+
+imputed_num_values = imputer.fit_transform(num_features)
+imputed_num_features = pd.DataFrame(data = imputed_num_values, columns = num_features.columns)
+
+cat_features['Married'] = cat_features['Name'].str.split().str.get(1)
+cat_features['Married'] = cat_features['Married'].apply(lambda x: 'others' if x not in ['Mr.', 'Mrs.', 'Miss.', 'Master.'] else x)
+cat_features = cat_features.drop(columns = ['Name', 'Ticket'])
+cat_features = pd.get_dummies(cat_features, drop_first = True)
+features = pd.concat([imputed_num_features, cat_features], axis = 1)
+features
+
+
+print(features)
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+
+sns.boxplot(data = features, x = 'Fare')
+sns.histplot(data = features, x = 'Fare', kde = True)
+scaler = MinMaxScaler()
+features['Fare'] = scaler.fit_transform(features[['Fare']])
+sns.boxplot(data = features, x = 'Fare')
+sns.histplot(data = features, x = 'Fare', kde = True)
+sns.boxplot(data = features, x = 'Age')
+sns.histplot(data = features, x = 'Age', kde = True)
+scaler = StandardScaler()
+features['Age'] = scaler.fit_transform(features[['Age']])
+sns.boxplot(data = features, x = 'Age')
+sns.histplot(data = features, x = 'Age', kde = True)
+features
+print(features)
