@@ -15,7 +15,9 @@
 - src : 프로그래밍 파일 업로드
 - doc : 프로젝트 제안서 업로드
 ***
-#### * 개인제안서
+#### * 개인제안서 UI
+<img width="1020" alt="오소기 UI" src="https://github.com/rugkqjem/opensource/assets/128054647/ba28308d-7984-4840-a2cc-6b08fd1025d4">
+
 ***
 #### *README참고
 - <https://gist.github.com/ihoneymon/652be052a0727ad59601>
